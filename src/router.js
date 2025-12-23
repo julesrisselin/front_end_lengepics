@@ -1,9 +1,17 @@
 import { createMemoryHistory, createRouter } from 'vue-router'
 
-import Test from './test.vue'
+import home from './Views/home.vue'
+import currentChallenge from './Views/currentChallenge.vue'
+import participations from './Views/participations.vue'
+import currentParticipations from './Views/currentParticipations.vue'
+import login from './Views/login.vue'
 
 const routes = [
-    { path: '/test', component: Test },
+    { path: '/', component: home },
+    {path: '/currentChallenge', component: currentChallenge},
+    {path: '/participations', component: participations},
+    {path: '/currentParticipations', component: currentParticipations},
+    {path: '/login', component: login},
 ]
 
 
