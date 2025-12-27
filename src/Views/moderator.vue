@@ -3,7 +3,7 @@
 </script>
 
 <template>
-
+moderator
 </template>
 
 <style scoped>

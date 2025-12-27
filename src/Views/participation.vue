@@ -2,7 +2,7 @@
 </script>
 
 <template>
-
+participation
 </template>
 
 <style scoped>

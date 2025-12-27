@@ -14,13 +14,13 @@ import addChallenge from './Views/addChallenge.vue'
 
 
 const routes = [
-    { path: '/', component: home },
+    {path: '/', component: home },
     {path: '/currentChallenge', component: currentChallenge},
     {path: '/participations', component: participations_infinite},
     {path: '/participation', component: participation},
     {path: '/login', component: login},
     {path: '/signin', component: signIn},
-    {path: '/currentParticpations', component: currentParticipations},
+    {path: '/currentParticipations', component: currentParticipations},
     {path: '/account', component: account},
     {path: '/history', component: history},
     {path: '/moderator/comments', component: moderator},

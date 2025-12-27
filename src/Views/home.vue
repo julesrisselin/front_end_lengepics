@@ -1,8 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
 const votes = ref([]);
 const selectValue = ref([]);
 const pictureInfos = ref([]);
+const router = useRouter()
+const route = useRoute()
 
 async function init() {
     const resp = await fetch("http://localhost:3000/api/votes/2")
@@ -18,23 +23,13 @@ async function getPicture() {
     console.log(pictureInfos);
 }
 
+    async function goToCurrentChallenge(){
+        router.push('/currentChallenge');
+    }
+
 init();
 getPicture();
 
-import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-
-const router = useRouter()
-const route = useRoute()
-
-const search = computed({
-    get() {
-        return route.query.search ?? ''
-    },
-    set(search) {
-        router.replace({ query: { search } })
-    }
-})
 </script>
 
 <template>
@@ -45,10 +40,13 @@ const search = computed({
                     <RouterLink to="/"> Accueil </RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/participation"> Challenge </RouterLink>
+                    <RouterLink to="/currentChallenge"> Challenge </RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/participations"> Participations </RouterLink>
+                    <RouterLink to="/currentParticipations"> Participations de la semaine </RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/participations"> Toutes les participations </RouterLink>
                 </li>
                 <li>
                     <RouterLink to="/login"> Connexion </RouterLink>
@@ -65,8 +63,9 @@ const search = computed({
         <div id="second_scare">
             {{ pictureInfos.data.data.picture }}
         </div>
-        <h2>   {{ pictureInfos.data.data.title_theme }} </h2>
-        <h3> {{ pictureInfos.data.data.description_theme }} </h3>
+        <h2> {{ pictureInfos.data.data.title_theme }} </h2>
+        <h4> {{ pictureInfos.data.data.description_theme }} </h4>
+        <button @click= goToCurrentChallenge()> Voir plus </button>
     </div>
 </template>
 
