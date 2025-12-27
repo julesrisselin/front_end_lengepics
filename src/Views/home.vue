@@ -1,10 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const votes = ref([]);
-const selectValue = ref([]);
 const pictureInfos = ref([]);
 const router = useRouter()
 const route = useRoute()
