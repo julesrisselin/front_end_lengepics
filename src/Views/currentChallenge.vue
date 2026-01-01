@@ -86,6 +86,10 @@
             <button @click= goToCurrentParticipations()> Les Photos > </button>
             </div>
 
+        <div>
+            <h2> Bonne chance ! </h2>
+        </div>
+
     </template>
     
     <style scoped></style>
