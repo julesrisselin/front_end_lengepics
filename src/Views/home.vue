@@ -68,10 +68,10 @@ getPicture();
 
     <div id="first_scare">
         <div id="second_scare">
-            {{ pictureInfos.data.data.picture }}
+            {{ pictureInfos.data.picture }}
         </div>
-        <h2> {{ pictureInfos.data.data.title_theme }} </h2>
-        <h4> {{ pictureInfos.data.data.description_theme }} </h4>
+        <h2> {{ pictureInfos.data.title_theme }} </h2>
+        <h4> {{ pictureInfos.data.description_theme }} </h4>
         <button @click= goToCurrentChallenge()> Voir plus </button>
     </div>
 </template>
