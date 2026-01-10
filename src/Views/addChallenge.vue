@@ -21,8 +21,8 @@ async function goToParticipations() {
     router.push('/participations');
 }
 
-async function goToLogin() {
-    router.push('/login');
+async function goToAccount() {
+    router.push('/account');
 }
 
 async function goToModerationsComments() {
@@ -48,7 +48,7 @@ async function goToModerationsComments() {
                     <button @click=goToParticipations()> Toutes les participations </button>
                 </li>
                 <li>
-                    <button @click=goToLogin()> Connexion </button>
+                    <button @click=goToAccount()> Mon compte </button>
                 </li>
             </ul>
         </nav>
