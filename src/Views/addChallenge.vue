@@ -58,7 +58,7 @@ async function goToModerationsComments() {
     <button @click=goToModerationsComments()> Modérations </button>
     <div>
         <br>
-        <form action="/api/challenges" enctype="multipart/form-data" method="post">
+        <form action="http://localhost:3000/api/challenges" enctype="multipart/form-data" method="post">
             <div class="form-group">
                 <input type="file" class="form-control-file" name="uploaded_file">
                 <input type="text" class="title" placeholder="Title" name="title">
