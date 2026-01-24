@@ -1,24 +1,24 @@
 <script setup>
 import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
-const pictureInfos = ref([]);
-const participationsInfos = ref([]);
-const router = useRouter()
+const challengeInfos = ref([]);
+const partInfos = ref([]);
+const router = useRouter();
 
+async function getData(){
+    const respChallenge = await fetch("http://localhost:3000/api/challenges/current");
+    const dataChallenge = await respChallenge.json();
+    challengeInfos.value = dataChallenge;
+    
+    const id_challenge = challengeInfos.value.data.id;
 
+    const params = new URLSearchParams();
+    params.append("id_challenge" , id_challenge);
 
-async function getPicture() {
-    const resp = await fetch("http://localhost:3000/api/challenges/current")
-    const data = await resp.json();
-    pictureInfos.value = data;
-}
-
-async function getParticipations() {
-    const resp = await fetch("http://localhost:3000/api/participations")
-    const data = await resp.json();
-    participationsInfos.value = data;
-    console.log(particpationsInfos);
+    const respPart = await fetch(`http://localhost:3000/api/participations?id_challenge=${params}`);
+    const dataPart = await respPart.json();
+    partInfos.value = dataPart;
 }
 
 async function goToCurrentChallenge() {
@@ -41,8 +41,7 @@ async function goToLogin() {
     router.push('/login');
 }
 
-getPicture();
-getParticipations();
+getData();
 
 </script>
 
@@ -70,7 +69,7 @@ getParticipations();
     </header id="accueil">
 
     <div id="picture">
-        <img :src="'http://localhost:3000/' + pictureInfos.data.picture"></img>
+        <img :src="'http://localhost:3000/' + challengeInfos.data.picture"></img>
     </div>
 
     <div>
@@ -78,32 +77,26 @@ getParticipations();
     </div>
 
     <div>
-        <h3> {{ pictureInfos.data.title_theme }} </h3>
+        <h3> {{ challengeInfos.data.title_theme }} </h3>
     </div>
 
     <div id="scare">
 
         <h4> Thème </h4>
-        <p> {{ pictureInfos.data.title_theme }} </p>
+        <p> {{ challengeInfos.data.title_theme }} </p>
         <h4> Description </h4>
-        <p> {{ pictureInfos.data.description_theme }} </p>
+        <p> {{ challengeInfos.data.description_theme }} </p>
         <h4> Date de début </h4>
-        <p> {{ pictureInfos.data.date_start }} </p>
+        <p> {{ challengeInfos.data.date_start }} </p>
         <h4> Date de fin </h4>
-        <p> {{ pictureInfos.data.date_end }} </p>
+        <p> {{ challengeInfos.data.date_end }} </p>
 
     </div>
 
     <table>
         <thead>
             <tr>
-                <td> Les Photos ! </td>
-            </tr>
-            <tr>
-                <td> v </td>
-            </tr>
-            <tr>
-                <td> <img :src= "'http://localhost:3000/' +  participationsInfos.data[1].picture_updated_url" ></img></td>
+                <td> {{ partInfos }} </td>
             </tr>
         </thead>
     </table>

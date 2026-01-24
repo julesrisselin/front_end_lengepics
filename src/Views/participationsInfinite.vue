@@ -4,13 +4,27 @@ import { ref } from 'vue'
     
     const participationsInfos = ref([]);
     const router = useRouter()
-    const route = useRoute()
+    const id_filter = ref("");
+    const partInfos = ref([]) 
 
     async function getParticipations() {
         const resp = await fetch("http://localhost:3000/api/participations")
         const data = await resp.json();
         participationsInfos.value = data;
     }
+
+    async function getData(){
+
+    const id_challenge = id_filter;
+    console.log(id_challenge , id_filter)
+    const params = new URLSearchParams();
+    params.append("id_challenge" , id_challenge);
+
+    const respPart = await fetch(`http://localhost:3000/api/participations?id_challenge=${params}`);
+    const dataPart = await respPart.json();
+    console.log(dataPart)
+    partInfos.value = dataPart;
+}
     
     async function goToCurrentChallenge(){
         router.push('/currentChallenge');
@@ -31,7 +45,8 @@ import { ref } from 'vue'
     async function goToLogin(){
         router.push('/login');
     }
-    
+
+    getData();
     getParticipations();
 </script>
 
@@ -58,7 +73,15 @@ import { ref } from 'vue'
         </nav>
         </header id="accueil">
 
-        <div> <h1> Toutes les Participations ! </h1></div>
+        <div id=""filter>
+            <h2> Filtres </h2>
+            <input type="number" v-model="id_filter" placeholder="Entrez l'id du challenge" required/> <button type="submit">Rechercher</button>
+
+
+        
+        </div>
+
+        <div> <h2> Toutes les Participations ! </h2></div>
 
         <p>{{ participationsInfos.data }}</p>
 

@@ -65,7 +65,7 @@
             <img :src= "'http://localhost:3000/' +  pictureInfos.data.picture" ></img>
         </div>
 
-        <div> <h1> Challenge de la Semaine ! </h1></div>
+        <div> <h1> Challenge de la Semaine ! N° {{ pictureInfos.data.id }} </h1></div>
 
         <div> <h3> {{ pictureInfos.data.title_theme }} </h3></div>
     
