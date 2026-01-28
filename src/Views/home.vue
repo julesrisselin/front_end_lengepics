@@ -29,7 +29,7 @@ async function getPicture() {
     }
 
     async function goToLogin(){
-        router.push('/login');
+        router.push('/moderator/comments');
     }
 
 

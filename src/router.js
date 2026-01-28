@@ -17,7 +17,7 @@ const routes = [
     {path: '/', component: home },
     {path: '/currentChallenge', component: currentChallenge},
     {path: '/participations', component: participations_infinite},
-    {path: '/participation', component: participation},
+    {path: '/participation/:id', component: participation},
     {path: '/login', component: login},
     {path: '/signin', component: signIn},
     {path: '/currentParticipations', component: currentParticipations},

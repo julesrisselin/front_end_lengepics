@@ -64,12 +64,14 @@ getComments();
 
     <h1> Les commentaires </h1>
     <button @click=goToAddChallenge()> Ajouter un challenge ! </button>
-    <div> 
+    <div>
         <br>
-        {{ comments.data[0].content }} 
+        <li v-for="(comments) in comments.data">
+            {{ comments.content }}
+            <button @click=Unvisible()> Non visible </button>
+        </li>
     </div>
     <br>
-    <button @click=Unvisible()> Non visible </button>
 
 </template>
 

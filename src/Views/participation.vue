@@ -1,8 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import Login from './login.vue';
 
 const router = useRouter();
+const id = router.params;
+
+console.log(id);
+
 
 async function goToCurrentChallenge() {
     router.push('/currentChallenge');
