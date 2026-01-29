@@ -11,7 +11,6 @@
         const resp = await fetch("http://localhost:3000/api/challenges/current")
         const data = await resp.json();
         pictureInfos.value = data;
-        console.log(pictureInfos);
     }
     
     async function goToCurrentChallenge(){

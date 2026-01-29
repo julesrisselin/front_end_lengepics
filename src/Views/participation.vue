@@ -1,12 +1,23 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import Login from './login.vue';
+import { useRouter, useRoute } from 'vue-router'
 
+const route =  useRoute();
 const router = useRouter();
-const id = router.params;
+const id_participation = route.params.id;
+const participation = ref([]);
 
-console.log(id);
+console.log(route.params.id)
+
+const params = new URLSearchParams();
+params.append("id_participation", id_participation);
+
+async function getParticipations(){
+    const resp = await fetch(`http://localhost:3000/api/participations?id_participation=${params}`)
+    const data = await resp.json();
+    console.log(data);
+    participation.value = data;
+}
 
 
 async function goToCurrentChallenge() {
@@ -28,6 +39,8 @@ async function goToAllParticipations() {
 async function goToLogin() {
     router.push('/login');
 }
+
+getParticipations();
 </script>
 
 <template>
@@ -71,7 +84,7 @@ async function goToLogin() {
             <input type="submit" value="Envoyer" class="btn btn-default">
         </div>
     </form>
-
+  {{ participation }}
 </template>
 
 <style scoped></style>

@@ -37,11 +37,6 @@ async function goToAllParticipations() {
     router.push('/participations');
 }
 
-async function goToParticipation() {
-    router.push('/participation/' + picture.data.id);
-    
-}
-
 async function goToLogin() {
     router.push('/login');
 }
@@ -103,7 +98,7 @@ getData();
     <li v-for="(picture) in partInfos.data">
         <img :src="'http://localhost:3000/' + picture.picture_updated_url"></img>
         {{ picture.date_submission }}
-        <button @click="$router.push('/participation/' + picture.id)"> Voir les détails </button>
+        <button @click="$router.push('/participation/'+ picture.id)"> Voir les détails </button>
     </li>
 
 </template>
