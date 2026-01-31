@@ -1,7 +1,21 @@
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const authentification = ref(false);
+
+async function Account() {
+    const respAccount = await fetch("http://localhost:3000/api/users/me",{
+        credentials : "include"
+    })
+    
+    if (respAccount.status === 200){
+        authentification.value = true;
+    } else {
+        authentification.value = false;
+    }
+}
 
 async function goToCurrentChallenge() {
     router.push('/currentChallenge');
@@ -19,9 +33,15 @@ async function goToParticipations() {
     router.push('/participations');
 }
 
+async function goToLogin(){
+        router.push('/login');
+    }
+
 async function goToAccount() {
     router.push('/account');
 }
+
+Account();
 </script>
 
 <template>
@@ -40,8 +60,11 @@ async function goToAccount() {
                 <li>
                     <button @click=goToParticipations()> Toutes les participations </button>
                 </li>
-                <li>
-                    <button @click=goToAccount()> Mon compte </button>
+                <li v-if="!authentification">
+                    <button @click= goToLogin() id="Account">  Connexion > </button>
+                </li>
+                <li v-else>
+                    <button @click= goToAccount() id="Account"> Mon compte > </button>
                 </li>
             </ul>
         </nav>

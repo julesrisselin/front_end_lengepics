@@ -14,9 +14,12 @@ async function getPicture() {
     const respAccount = await fetch("http://localhost:3000/api/users/me",{
         credentials : "include"
     })
+    
     if (respAccount.status === 200){
-        authentification == true;
-    } 
+        authentification.value = true;
+    } else {
+        authentification.value = false;
+    }
 }
 
     async function goToCurrentChallenge(){
@@ -37,6 +40,10 @@ async function getPicture() {
 
     async function goToLogin(){
         router.push('/login');
+    }
+
+    async function goToAccount(){
+        router.push('/account');
     }
 
 
@@ -62,8 +69,8 @@ getPicture();
                 <li>
                     <button @click= goToParticipations()> Toutes les participations </button>
                 </li>
-                <li v-if="authentification = false ">
-                    <button @click= goToLogin() id="Account">  > </button>
+                <li v-if="!authentification">
+                    <button @click= goToLogin() id="Account">  Connexion > </button>
                 </li>
                 <li v-else>
                     <button @click= goToAccount() id="Account"> Mon compte > </button>

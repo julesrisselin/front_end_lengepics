@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 const challengeInfos = ref([]);
 const partInfos = ref([]);
 const router = useRouter();
+const authentification = ref(false);
 
 async function getData() {
     const respChallenge = await fetch("http://localhost:3000/api/challenges/current");
@@ -19,6 +20,16 @@ async function getData() {
     const respPart = await fetch(`http://localhost:3000/api/participations?id_challenge=${params}`);
     const dataPart = await respPart.json();
     partInfos.value = dataPart;
+
+    const respAccount = await fetch("http://localhost:3000/api/users/me",{
+        credentials : "include"
+    })
+    
+    if (respAccount.status === 200){
+        authentification.value = true;
+    } else {
+        authentification.value = false;
+    }
 }
 
 async function goToCurrentChallenge() {
@@ -41,6 +52,11 @@ async function goToLogin() {
     router.push('/login');
 }
 
+async function goToAccount(){
+        router.push('/account');
+    }
+
+
 getData();
 
 </script>
@@ -61,8 +77,11 @@ getData();
                 <li>
                     <button @click=goToAllParticipations()> Toutes les participations </button>
                 </li>
-                <li>
-                    <button @click=goToLogin()> Connexion > </button>
+                <li v-if="!authentification">
+                    <button @click= goToLogin() id="Account">  Connexion > </button>
+                </li>
+                <li v-else>
+                    <button @click= goToAccount() id="Account"> Mon compte > </button>
                 </li>
             </ul>
         </nav>
