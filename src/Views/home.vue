@@ -109,7 +109,7 @@ getPicture();
 
     <div v-if = pictureInfos.data.picture id="first_scare">
         <div id="second_scare">
-            <img :src="'http://localhost:3000/' + pictureInfos.data.picture"></img>
+            <img id="img_challenge" :src="'http://localhost:3000/' + pictureInfos.data.picture"></img>
         </div>
         <h2> {{ pictureInfos.data.title_theme }} </h2>
         <h4> {{ pictureInfos.data.description_theme }} </h4>
@@ -164,5 +164,10 @@ ul {
 
 #account {
     margin-left: 45%;
+}
+
+#img_challenge{
+    max-height: 250px;
+    max-width: 250px;
 }
 </style>
