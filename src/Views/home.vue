@@ -36,7 +36,6 @@ async function LogOut() {
         credentials: "include"
     })
     const data = await resp.json();
-    console.log(data);
 
 
 }

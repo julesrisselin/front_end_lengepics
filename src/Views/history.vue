@@ -63,7 +63,7 @@ getData();
                     <button @click=goToParticipations()> Toutes les participations </button>
                 </li>
                 <li>
-                    <button @click=goToAccount() id="Account"> Mon compte > </button>
+                    <button @click=goToAccount() id="Account"> Mon compte </button>
                 </li>
             </ul>
         </nav>

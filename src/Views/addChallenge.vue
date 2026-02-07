@@ -68,10 +68,10 @@ Account();
                     <button @click=goToParticipations()> Toutes les participations </button>
                 </li>
                 <li v-if="!authentification">
-                    <button @click=goToLogin() id="Account"> Connexion > </button>
+                    <button @click=goToLogin() id="Account"> Connexion </button>
                 </li>
                 <li v-else>
-                    <button @click=goToAccount() id="Account"> Mon compte > </button>
+                    <button @click=goToAccount() id="Account"> Mon compte </button>
                 </li>
             </ul>
         </nav>

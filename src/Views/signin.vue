@@ -20,7 +20,7 @@ async function goToParticipations() {
 }
 
 async function goToLogin() {
-    router.push('/moderator/comments');
+    router.push('/login');
 }
 </script>
 
